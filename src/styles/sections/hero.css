@@ -1,0 +1,160 @@
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+    --drawing-bg: #0d1218;
+    position: relative;
+    padding-top: clamp(2.5rem, 2rem + 4vw, 5.5rem);
+    overflow: hidden;
+}
+
+/* griglia tecnica di fondo, sfumata verso il basso */
+.hero__grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    background-position: center top;
+    opacity: 0.55;
+    -webkit-mask-image: linear-gradient(to bottom, #000, transparent 90%);
+            mask-image: linear-gradient(to bottom, #000, transparent 90%);
+    pointer-events: none;
+}
+
+.hero__inner {
+    position: relative;
+    display: grid;
+    gap: clamp(2.5rem, 2rem + 3vw, 4rem);
+    align-items: center;
+}
+
+.hero__title {
+    margin-top: var(--s-5);
+    font-size: var(--fs-h1);
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+}
+.hero__dot { color: var(--accent-hi); }
+.hero__lead {
+    max-width: 50ch;
+    margin-top: var(--s-5);
+    font-size: var(--fs-md);
+}
+.hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+    margin-top: var(--s-6);
+}
+.hero__meta {
+    margin-top: var(--s-6);
+    font: 400 var(--fs-xs)/1.6 var(--font-mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-3);
+}
+
+/* disegno tecnico */
+.hero__figure {
+    background: var(--drawing-bg);
+    border: var(--border-strong);
+    border-radius: var(--radius-lg);
+    padding: clamp(0.25rem, 1vw, 0.75rem);
+}
+.cell-drawing { width: 100%; height: auto; }
+.cell-drawing .d-line,
+.cell-drawing .d-acc {
+    fill: none;
+    stroke: var(--line-3);
+    stroke-width: 1.6;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+}
+.cell-drawing .d-line--soft { stroke: var(--line-2); stroke-width: 1.2; }
+.cell-drawing .d-line--axis { stroke: var(--line-2); stroke-dasharray: 10 3 2 3; stroke-width: 1; }
+.cell-drawing .d-fill { fill: var(--drawing-bg); }
+.cell-drawing .d-ticks { stroke: var(--line-2); stroke-width: 10; stroke-dasharray: 1.4 18.6; fill: none; }
+.cell-drawing .d-acc { stroke: var(--accent-hi); }
+.cell-drawing .d-dash { stroke-dasharray: 5 5; stroke-width: 1.3; }
+.cell-drawing .d-line.d-dash { stroke-dasharray: 6 12; }
+.cell-drawing .d-acc.d-dash { opacity: 0.8; }
+.cell-drawing .d-node { fill: var(--accent-hi); }
+.cell-drawing .d-led { fill: var(--accent-hi); stroke: none; }
+.cell-drawing .d-led--off { fill: var(--line-3); }
+.cell-drawing .d-text,
+.cell-drawing .d-tag {
+    font: 500 10px var(--font-mono);
+    letter-spacing: 0.14em;
+    fill: var(--text-3);
+}
+.cell-drawing .d-tag { font-size: 12px; fill: var(--accent-hi); }
+
+/* tracciamento delle linee all'ingresso (una volta sola, aggiunto da JS) */
+@media (prefers-reduced-motion: no-preference) {
+    .js .cell-drawing:not(.is-ready) { visibility: hidden; }
+    .cell-drawing.is-drawing .d-group :is(.d-line, .d-acc):not(.d-dash) {
+        stroke-dasharray: 1;
+        stroke-dashoffset: 1;
+        animation: draw 1.3s var(--ease) forwards;
+        animation-delay: var(--draw-delay, 0s);
+    }
+    .cell-drawing.is-drawing .d-labels,
+    .cell-drawing.is-drawing .d-dash,
+    .cell-drawing.is-drawing .d-led,
+    .cell-drawing.is-drawing .d-node {
+        opacity: 0;
+        animation: fade-in 0.6s ease forwards;
+        animation-delay: 1.1s;
+    }
+    #d-plc { --draw-delay: 0s; }
+    #d-belt { --draw-delay: 0.15s; }
+    #d-robot { --draw-delay: 0.3s; }
+    #d-vision { --draw-delay: 0.6s; }
+    #d-bus { --draw-delay: 0.85s; }
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes fade-in { to { opacity: 1; } }
+
+/* strip delle piattaforme (dati reali del sito) */
+.spec-strip {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: clamp(2.5rem, 2rem + 3vw, 4.5rem);
+    border-top: var(--border-strong);
+}
+.spec-strip li {
+    display: grid;
+    gap: 0.35rem;
+    align-content: start;
+    padding: var(--s-5) var(--s-4) var(--s-5) 0;
+    border-bottom: var(--border);
+    font-size: var(--fs-sm);
+}
+.spec-strip li:nth-child(even) { padding-left: var(--s-4); border-left: var(--border); }
+.spec-strip strong { font-size: var(--fs-base); line-height: 1.35; }
+.spec-strip li > span:last-child { color: var(--text-3); font-size: var(--fs-xs); }
+
+/* nascondi didascalie nel disegno quando sarebbero illeggibili */
+@media (max-width: 599px) {
+    .cell-drawing .d-labels, .cell-drawing .d-text { display: none; }
+    .cell-drawing .d-line, .cell-drawing .d-acc { stroke-width: 2; }
+}
+@media (max-width: 599px) {
+    .hero__actions .btn { width: 100%; }
+    .hero__meta > [aria-hidden] { display: none; }
+    .hero__meta-alt { display: block; }
+}
+
+@media (min-width: 900px) {
+    .hero__inner { grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); }
+    .spec-strip { grid-template-columns: repeat(4, 1fr); border-bottom: var(--border); }
+    .spec-strip li { border-bottom: 0; padding-left: var(--s-5); padding-right: var(--s-4); border-left: var(--border); }
+    .spec-strip li:first-child { padding-left: 0; border-left: 0; }
+    .spec-strip li:nth-child(even) { padding-left: var(--s-5); }
+}
+@media (min-width: 1280px) {
+    .hero { padding-top: 6rem; }
+}

@@ -1,0 +1,74 @@
+/* ============================================================
+   APPROCCIO TECNICO — principi + schema a livelli
+   ============================================================ */
+.approach { display: grid; gap: var(--s-7); align-items: start; }
+
+.principles { display: grid; border-top: var(--border-strong); }
+.principle {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--s-4);
+    padding: var(--s-5) 0;
+    border-bottom: var(--border);
+}
+.principle__mark {
+    width: 0.625rem; height: 0.625rem;
+    margin-top: 0.55rem;
+    background: var(--accent-hi);
+}
+.principle h3 { font-size: var(--fs-h3); }
+.principle p { margin-top: var(--s-2); max-width: 46ch; }
+
+/* schema a livelli: i livelli sono collegati da un bus verticale */
+.stack {
+    padding: var(--s-5);
+    background: var(--surface);
+    border: var(--border-strong);
+    border-radius: var(--radius-lg);
+}
+.stack__layers { position: relative; display: grid; gap: var(--s-4); }
+.stack__layer {
+    position: relative;
+    display: grid;
+    gap: var(--s-2);
+    padding: var(--s-4);
+    background: var(--bg);
+    border: 1px solid var(--line-2);
+    border-radius: var(--radius);
+}
+.stack__layer h3 { font-size: 1.0625rem; }
+/* collegamento tra i livelli */
+.stack__layer:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 50%; top: 100%;
+    width: 1px; height: var(--s-4);
+    background: var(--accent-hi);
+}
+.stack__layer:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: calc(50% - 3px); top: calc(100% + var(--s-4) / 2 - 3px);
+    width: 7px; height: 7px;
+    background: var(--accent-hi);
+    z-index: 1;
+}
+.stack figcaption {
+    margin-top: var(--s-5);
+    font: 400 var(--fs-xs)/1.6 var(--font-mono);
+    letter-spacing: 0.02em;
+    color: var(--text-3);
+}
+
+@media (min-width: 560px) {
+    .stack { padding: var(--s-6); }
+    .stack__layer { grid-template-columns: 6.5rem 1fr; grid-template-areas: "lvl h" "lvl tags"; column-gap: var(--s-4); align-items: baseline; }
+    .stack__lvl { grid-area: lvl; }
+    .stack__layer h3 { grid-area: h; }
+    .stack__layer .tags { grid-area: tags; }
+}
+@media (min-width: 960px) {
+    .approach { grid-template-columns: repeat(12, 1fr); column-gap: var(--s-6); }
+    .principles { grid-column: 1 / span 5; }
+    .stack { grid-column: 7 / -1; }
+}

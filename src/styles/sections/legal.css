@@ -1,0 +1,16 @@
+/* ============================================================
+   PAGINE LEGALI (privacy)
+   ============================================================ */
+.legal { padding-block: clamp(2.5rem, 2rem + 4vw, 5rem) var(--section-y); }
+.legal__inner { max-width: calc(46rem + var(--gutter) * 2); }
+.legal__inner > .link-arrow { display: flex; width: fit-content; margin-bottom: var(--s-7); }
+.legal .eyebrow { display: flex; }
+.legal__title { margin-top: var(--s-4); font-size: var(--fs-h2); }
+.legal__updated { margin: var(--s-3) 0 var(--s-7); font: 400 var(--fs-sm)/1.5 var(--font-mono); color: var(--text-3); }
+.legal h2 { margin: var(--s-7) 0 var(--s-3); padding-top: var(--s-5); border-top: var(--border); font-size: var(--fs-h3); }
+.legal p, .legal li { max-width: 68ch; }
+.legal ul { display: grid; gap: var(--s-3); margin: 0; }
+.legal li { padding-left: 1.25rem; position: relative; }
+.legal li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 0.5rem; height: 1px; background: var(--accent-hi); }
+.legal p a { color: var(--accent-hi); text-decoration: underline; text-underline-offset: 3px; }
+.legal p a:hover { color: #fff; }

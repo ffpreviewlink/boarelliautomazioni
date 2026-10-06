@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{title}}</title>
+    <meta name="description" content="{{description}}">
+    <meta name="author" content="Samuele Boarelli">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://boarelliautomazioni.ch{{path}}">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Boarelli Automazioni">
+    <meta property="og:locale" content="it_CH">
+    <meta property="og:title" content="{{title}}">
+    <meta property="og:description" content="{{og_description}}">
+    <meta property="og:url" content="https://boarelliautomazioni.ch{{path}}">
+    <meta property="og:image" content="https://boarelliautomazioni.ch/assets/img/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Boarelli Automazioni, software e automazione per l'industria">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{title}}">
+    <meta name="twitter:description" content="{{og_description}}">
+    <meta name="twitter:image" content="https://boarelliautomazioni.ch/assets/img/og-image.png">
+
+    <meta name="theme-color" content="#0a0d11">
+    <meta name="color-scheme" content="dark">
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+    <link rel="preload" href="assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/ibm-plex-sans-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script>document.documentElement.classList.add('js');</script>
+    {{head_extra}}
+</head>
+<body>
+    <a class="skip-link" href="#main">Vai al contenuto</a>
+    <!-- @include components/header.html -->
+    {{content}}
+    <!-- @include components/footer.html -->
+    <script src="assets/js/main.js" defer></script>
+</body>
+</html>

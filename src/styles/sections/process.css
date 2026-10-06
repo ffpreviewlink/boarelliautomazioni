@@ -1,0 +1,65 @@
+/* ============================================================
+   PROCESSO — sequenza tecnica con linea e nodi numerati
+   Mobile: binario verticale. Da 700px: colonne con linea orizzontale.
+   ============================================================ */
+.steps { display: grid; }
+
+.step {
+    position: relative;
+    padding: 0 0 var(--s-6) 3.25rem;
+}
+.step:last-child { padding-bottom: 0; }
+/* binario */
+.step::before {
+    content: "";
+    position: absolute;
+    left: 0.9375rem; top: 2rem; bottom: 0;
+    width: 1px;
+    background: var(--line-2);
+    transform-origin: top;
+}
+.step:last-child::before { display: none; }
+.step__num {
+    position: absolute;
+    left: 0; top: 0;
+    display: grid;
+    place-items: center;
+    width: 1.875rem; height: 1.875rem;
+    background: var(--bg);
+    border: 1px solid var(--accent-hi);
+    border-radius: var(--radius);
+    font: 500 var(--fs-xs)/1 var(--font-mono);
+    color: var(--accent-hi);
+}
+.step h3 { padding-top: 0.2rem; font-size: var(--fs-h3); }
+.step p { margin-top: var(--s-2); font-size: var(--fs-sm); max-width: 44ch; }
+
+@media (min-width: 700px) {
+    .steps { grid-template-columns: repeat(3, 1fr); column-gap: var(--s-5); row-gap: var(--s-7); }
+    .step { padding: 3.25rem 0 0; }
+    .step::before {
+        left: 1.875rem; right: calc(var(--s-5) * -1); top: 0.9375rem; bottom: auto;
+        width: auto; height: 1px;
+        transform-origin: left;
+    }
+    .step:nth-child(3n)::before { right: 0; }
+    .step:last-child::before { display: block; right: 0; }
+    .step:nth-child(3n)::before, .step:last-child::before { background: linear-gradient(90deg, var(--line-2), transparent); }
+    .step p { max-width: 34ch; }
+}
+@media (min-width: 1180px) {
+    .steps { grid-template-columns: repeat(6, 1fr); row-gap: 0; }
+    .step:nth-child(3n)::before { right: calc(var(--s-5) * -1); background: var(--line-2); }
+    .step:last-child::before { right: 0; background: linear-gradient(90deg, var(--line-2), transparent); }
+    .step h3 { font-size: 1.125rem; }
+}
+
+/* linea che si traccia quando il passo entra in vista */
+@media (prefers-reduced-motion: no-preference) {
+    .js .step::before { transform: scaleY(0); transition: transform 0.9s var(--ease) 0.2s; }
+    .js .step.is-visible::before { transform: scaleY(1); }
+    @media (min-width: 700px) {
+        .js .step::before { transform: scaleX(0); }
+        .js .step.is-visible::before { transform: scaleX(1); }
+    }
+}

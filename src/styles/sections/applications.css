@@ -1,0 +1,35 @@
+/* ============================================================
+   AMBITI DI INTERVENTO — tabella di celle con bordi sottili
+   ============================================================ */
+.cells {
+    display: grid;
+    border-top: var(--border-strong);
+    border-left: var(--border-strong);
+}
+.cell {
+    position: relative;
+    display: grid;
+    gap: var(--s-3);
+    align-content: start;
+    padding: var(--s-6) var(--s-5);
+    border-right: var(--border-strong);
+    border-bottom: var(--border-strong);
+}
+.cell::before {
+    content: "";
+    position: absolute;
+    left: -1px; right: -1px; top: -1px;
+    height: 2px;
+    background: var(--accent-hi);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s var(--ease);
+}
+.cell__code { font: 500 var(--fs-xs)/1 var(--font-mono); letter-spacing: 0.12em; color: var(--accent-hi); }
+.cell h3 { font-size: var(--fs-h3); }
+.cell p { font-size: var(--fs-sm); max-width: 38ch; }
+
+@media (hover: hover) { .cell:hover::before { transform: scaleX(1); } }
+
+@media (min-width: 640px)  { .cells { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .cells { grid-template-columns: repeat(3, 1fr); } .cell { padding: var(--s-7) var(--s-6); } }
