@@ -1,0 +1,86 @@
+/* ============================================================
+   SOFTWARE PER IL CONTROLLO: catena campo → produzione + scheda tecnica
+   ============================================================ */
+.flow-wrap { margin-bottom: clamp(2.5rem, 2rem + 3vw, 4.5rem); }
+.flow-wrap figcaption { margin-top: var(--s-4); max-width: 70ch; text-transform: none; letter-spacing: 0.02em; }
+
+.flow { display: grid; gap: 2rem; counter-reset: node; }
+.flow__node {
+    position: relative;
+    display: grid;
+    gap: var(--s-3);
+    align-content: start;
+    padding: var(--s-4) var(--s-4) var(--s-5);
+    background: var(--panel);
+    border: var(--border-strong);
+}
+.flow__node h3 { font-size: var(--fs-h3); font-weight: 700; }
+.flow__lvl { display: flex; align-items: center; gap: 0.6rem; }
+.flow__lvl::before { content: ""; width: 0.5rem; height: 0.5rem; background: var(--steel-3); }
+.flow__node--core { border-color: var(--accent-hi); background: linear-gradient(180deg, var(--accent-dim), var(--panel) 55%); }
+.flow__node--core .flow__lvl { color: var(--accent-hi); }
+.flow__node--core .flow__lvl::before { background: var(--accent-hi); }
+.flow__node--out { background: transparent; border-style: dashed; }
+.flow__node--out .state { margin-top: auto; }
+
+/* connettori: linea con segnale che scorre e punta di freccia */
+.flow__node:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 1.25rem; top: 100%;
+    width: 2px; height: 2rem;
+    background: repeating-linear-gradient(180deg, var(--accent-hi) 0 3px, transparent 3px 8px);
+}
+.flow__node:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: calc(1.25rem - 4px); top: calc(100% + 2rem - 6px);
+    border: 5px solid transparent;
+    border-top: 7px solid var(--accent-hi);
+}
+@media (prefers-reduced-motion: no-preference) {
+    .flow__node:not(:last-child)::after { animation: flow-v 0.9s linear infinite; background-size: 2px 8px; }
+    @keyframes flow-v { to { background-position: 0 8px; } }
+    @keyframes flow-h { to { background-position: 8px 0; } }
+}
+
+.control { display: grid; gap: var(--s-6); align-items: start; }
+.control__text { display: grid; gap: var(--s-4); max-width: 60ch; }
+.control__text p { font-size: var(--fs-md); }
+.control__text .link-arrow { margin-top: var(--s-2); }
+
+/* scheda tecnica */
+.plate__list { display: grid; }
+.plate__list > div {
+    display: grid;
+    gap: 0.2rem;
+    padding: 0.85rem 1rem;
+    border-bottom: var(--border);
+}
+.plate__list > div:last-child { border-bottom: 0; }
+.plate__list dd { color: var(--text); }
+
+@media (min-width: 700px) {
+    .plate__list > div { grid-template-columns: 9rem 1fr; gap: 1rem; align-items: baseline; }
+}
+@media (min-width: 700px) and (max-width: 1079px) {
+    .flow { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .flow__node::after, .flow__node::before { display: none; }
+}
+@media (min-width: 960px) {
+    .control { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: var(--s-8); }
+}
+@media (min-width: 1080px) {
+    .flow { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 3rem; }
+    .flow__node:not(:last-child)::after {
+        left: 100%; top: 2.1rem;
+        width: 3rem; height: 2px;
+        background: repeating-linear-gradient(90deg, var(--accent-hi) 0 3px, transparent 3px 8px);
+    }
+    .flow__node:not(:last-child)::before {
+        left: calc(100% + 3rem - 7px); top: calc(2.1rem - 4px);
+        border: 5px solid transparent;
+        border-left: 7px solid var(--accent-hi);
+    }
+    .flow__node:not(:last-child)::after { animation-name: flow-h; }
+}

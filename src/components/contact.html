@@ -1,34 +1,40 @@
 <section class="section contact" id="contatti" aria-labelledby="contatti-title">
     <div class="container">
-        <!-- @include components/section-head.html id="contatti" idx="08" label="Contatti" heading="Parliamo del tuo impianto." sub="Descrivi la macchina, la linea o il problema da affrontare: valuteremo il modo più efficace per intervenire sul software e sull'integrazione." -->
-
         <div class="contact__grid">
-            <div class="contact__actions" data-reveal>
-                <a class="contact-card contact-card--primary" href="mailto:samuele@boarelliautomazioni.ch?subject=Richiesta%20di%20informazioni&amp;body=Macchina%20o%20linea%3A%0D%0APiattaforme%20(PLC%2C%20robot%2C%20HMI%2C%20SCADA)%3A%0D%0ARichiesta%3A%0D%0ALuogo%20e%20tempi%3A%0D%0A%0D%0AAzienda%20e%20telefono%3A%0D%0A">
-                    <span class="label">Email</span>
-                    <strong>samuele@boarelliautomazioni.ch</strong>
-                    <span class="contact-card__cta">Scrivi una mail <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
-                </a>
-                <a class="contact-card" href="tel:+41763001297">
-                    <span class="label">Telefono</span>
-                    <strong>+41 76 300 12 97</strong>
-                    <span class="contact-card__cta">Chiama <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
-                </a>
-                <dl class="contact__details">
-                    <div><dt class="label">Sede</dt><dd>Via Lucino 28, 6932 Breganzona (CH)</dd></div>
-                    <div><dt class="label">Orari</dt><dd>Lun–Ven 8:00–18:00</dd></div>
-                </dl>
+            <div class="contact__lead" data-reveal>
+                <h2 class="contact__title" id="contatti-title">Hai una macchina da automatizzare?</h2>
+                <p class="contact__sub">Descrivi la macchina, la linea o il problema da affrontare: valuteremo il modo più efficace per intervenire sul software e sull'integrazione.</p>
+                <div class="contact__actions">
+                    <a class="btn btn--primary btn--lg" data-inquiry-cta href="mailto:samuele@boarelliautomazioni.ch?subject=Richiesta%20di%20informazioni&amp;body=Macchina%20o%20linea%3A%0D%0APiattaforme%20(PLC%2C%20robot%2C%20HMI%2C%20SCADA)%3A%0D%0ARichiesta%3A%0D%0ALuogo%20e%20tempi%3A%0D%0A%0D%0AAzienda%20e%20telefono%3A%0D%0A">Parliamo del progetto <svg class="btn__arrow" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a>
+                    <a class="btn btn--ghost btn--lg" href="tel:+41763001297">Chiama +41 76 300 12 97</a>
+                </div>
             </div>
 
-            <div class="brief" data-reveal>
-                <h3 class="label">Cosa indicare nel primo messaggio</h3>
-                <ol>
-                    <li><span>01</span>Macchina o linea e settore di applicazione</li>
-                    <li><span>02</span>Piattaforme coinvolte: PLC, robot, HMI, SCADA</li>
-                    <li><span>03</span>Richiesta: sviluppo, modifica, guasto, messa in servizio</li>
-                    <li><span>04</span>Luogo e tempi dell'intervento</li>
-                </ol>
+            <div class="panel inquiry" data-reveal>
+                <div class="panel__bar"><span class="mono">Project inquiry</span><span class="state state--warn">In attesa</span></div>
+                <div class="inquiry__body">
+                    <p class="mono" id="inquiry-types-label">Tipo di progetto</p>
+                    <ul class="inquiry__types" data-types aria-labelledby="inquiry-types-label">
+                        <li>Automazione</li><li>Retrofit</li><li>PLC</li><li>Robotica</li><li>Assistenza</li>
+                    </ul>
+
+                    <h3 class="mono inquiry__brief-title">Cosa indicare nel primo messaggio</h3>
+                    <ol class="inquiry__brief">
+                        <li><span class="mono">01</span>Macchina o linea e settore di applicazione</li>
+                        <li><span class="mono">02</span>Piattaforme coinvolte: PLC, robot, HMI, SCADA</li>
+                        <li><span class="mono">03</span>Richiesta: sviluppo, modifica, guasto, messa in servizio</li>
+                        <li><span class="mono">04</span>Luogo e tempi dell'intervento</li>
+                    </ol>
+                </div>
             </div>
         </div>
+
+        <dl class="facts" data-reveal>
+            <div><dt class="mono">Email</dt><dd><a href="mailto:samuele@boarelliautomazioni.ch">samuele@boarelliautomazioni.ch</a></dd></div>
+            <div><dt class="mono">Telefono</dt><dd><a href="tel:+41763001297">+41 76 300 12 97</a></dd></div>
+            <div><dt class="mono">Sede</dt><dd>Via Lucino 28, 6932 Breganzona (CH)</dd></div>
+            <div><dt class="mono">Orari</dt><dd>Lun–Ven 8:00–18:00</dd></div>
+            <div><dt class="mono">Zona operativa</dt><dd>Svizzera · Italia · Estero</dd></div>
+        </dl>
     </div>
 </section>

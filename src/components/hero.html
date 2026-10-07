@@ -1,129 +1,179 @@
 <section class="hero" aria-labelledby="hero-title">
-    <div class="hero__grid-bg" aria-hidden="true"></div>
-
     <div class="container hero__inner">
         <div class="hero__copy">
-            <p class="eyebrow">Automazione industriale</p>
-            <h1 id="hero-title" class="hero__title">Software e automazione per l'industria<span class="hero__dot">.</span></h1>
+            <h1 id="hero-title" class="hero__title">
+                <span class="hero__title-main">Automazione industriale.</span>
+                <span class="hero__title-sub">Software che controlla macchine e linee.</span>
+            </h1>
             <p class="hero__lead">
                 Programmiamo PLC e robot, sviluppiamo HMI e SCADA e li portiamo in produzione:
                 su macchine, isole robotizzate e linee automatiche, nuove o già in servizio.
             </p>
             <div class="hero__actions">
-                <a class="btn btn--primary btn--lg" href="#contatti">Parliamone <svg class="btn__arrow" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
-                <a class="btn btn--ghost btn--lg" href="#servizi">Scopri cosa facciamo</a>
+                <a class="btn btn--primary btn--lg" href="#contatti">Parliamo del progetto <svg class="btn__arrow" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a>
+                <a class="btn btn--ghost btn--lg" href="#servizi">Scopri le soluzioni</a>
             </div>
-            <p class="hero__meta">Svizzera · Italia · Estero<span aria-hidden="true"> — </span><span class="hero__meta-alt">in stabilimento o da remoto</span></p>
+            <p class="hero__meta mono">Svizzera · Italia · Estero<span class="hero__meta-alt"> — in stabilimento o da remoto</span></p>
         </div>
 
-        <figure class="hero__figure">
-            <svg class="cell-drawing" viewBox="0 84 600 416" role="img" aria-label="Schema di principio di una cella robotizzata: armadio PLC, robot, sistema di visione e nastro trasportatore">
-                <!-- cornice e testata del disegno -->
-                <rect class="d-line d-line--soft" x="8" y="92" width="584" height="400"/>
-                <path class="d-line" d="M8 112h12M28 92v12M592 112h-12M572 92v12M8 472h12M28 492v-12M592 472h-12M572 492v-12"/>
-                <text class="d-text" x="28" y="124">SCHEMA DI PRINCIPIO</text>
-                <text class="d-text" x="572" y="124" text-anchor="end">CELLA ROBOTIZZATA</text>
+        <figure class="schematic panel">
+            <div class="panel__bar">
+                <span class="mono">Schema di sistema · Cella robotizzata</span>
+                <span class="state">Run</span>
+            </div>
 
-                <!-- pavimento, assi e righello -->
-                <path class="d-line" d="M20 430h560"/>
-                <path class="d-ticks" d="M20 436h560"/>
-                <path class="d-line d-line--axis" d="M150 134v296"/>
+            <!-- versione estesa (tablet e desktop) -->
+            <svg class="schematic__svg schematic__svg--wide" viewBox="0 0 640 500" role="img" aria-label="Schema di principio di una cella robotizzata: HMI e SCADA collegati al PLC, che comanda robot, azionamenti e sensori di visione sulla linea di produzione">
+                <defs><clipPath id="belt-clip"><rect x="30" y="396" width="580" height="40"/></clipPath></defs>
 
-                <!-- armadio PLC -->
-                <g class="d-group" id="d-plc">
-                    <rect class="d-line d-fill" x="24" y="262" width="76" height="168"/>
-                    <rect class="d-line d-line--soft" x="32" y="270" width="60" height="152"/>
-                    <rect class="d-line d-fill" x="40" y="282" width="44" height="18"/>
-                    <rect class="d-line d-fill" x="40" y="308" width="44" height="18"/>
-                    <rect class="d-line d-fill" x="40" y="334" width="44" height="18"/>
-                    <rect class="d-line d-fill" x="40" y="360" width="44" height="18"/>
-                    <rect class="d-line d-fill" x="40" y="386" width="44" height="18"/>
-                    <rect class="d-led" x="45" y="288" width="5" height="5"/>
-                    <rect class="d-led" x="45" y="314" width="5" height="5"/>
-                    <rect class="d-led d-led--off" x="45" y="340" width="5" height="5"/>
-                    <rect class="d-led" x="45" y="366" width="5" height="5"/>
-                    <rect class="d-led d-led--off" x="45" y="392" width="5" height="5"/>
-                    <path class="d-line d-line--soft" d="M58 289h20M58 315h20M58 341h20M58 367h20M58 393h20"/>
+                <!-- collegamenti -->
+                <g class="s-wires">
+                    <path class="s-line s-draw" pathLength="1" d="M200 95H320V170"/>
+                    <path class="s-line s-draw" pathLength="1" d="M405 215H525V150"/>
+                    <path class="s-line s-draw" pathLength="1" d="M235 265H115V330"/>
+                    <path class="s-line s-draw" pathLength="1" d="M405 265H525V330"/>
+                    <path class="s-line s-draw" pathLength="1" d="M115 410V436M525 410V436"/>
+                </g>
+                <g class="s-signals">
+                    <path class="s-sig" d="M200 95H320V170"/>
+                    <path class="s-sig s-sig--rev" d="M405 215H525V150"/>
+                    <path class="s-sig s-sig--rev" d="M235 265H115V330"/>
+                    <path class="s-sig" d="M405 265H525V330"/>
+                    <circle class="s-node" cx="320" cy="95" r="3.5"/>
+                    <circle class="s-node" cx="525" cy="215" r="3.5"/>
+                    <circle class="s-node" cx="115" cy="265" r="3.5"/>
+                    <circle class="s-node" cx="525" cy="265" r="3.5"/>
                 </g>
 
-                <!-- nastro trasportatore -->
-                <g class="d-group" id="d-belt">
-                    <rect class="d-line d-fill" x="240" y="396" width="300" height="14" rx="7"/>
-                    <path class="d-line d-line--soft d-dash" d="M256 403h268"/>
-                    <rect class="d-line d-fill" x="250" y="410" width="280" height="9"/>
-                    <rect class="d-line d-fill" x="266" y="419" width="8" height="11"/>
-                    <rect class="d-line d-fill" x="398" y="419" width="8" height="11"/>
-                    <rect class="d-line d-fill" x="516" y="419" width="8" height="11"/>
-                    <!-- colli -->
-                    <rect class="d-line d-fill" x="262" y="366" width="32" height="30"/>
-                    <rect class="d-line d-fill" x="454" y="364" width="44" height="32"/>
-                    <path class="d-line d-line--soft" d="M476 364v32"/>
+                <!-- HMI / SCADA -->
+                <g class="s-block">
+                    <rect class="s-box s-draw" pathLength="1" x="30" y="40" width="170" height="110"/>
+                    <text class="s-name" x="42" y="62">HMI / SCADA</text>
+                    <rect class="s-line s-line--soft" x="44" y="76" width="142" height="62"/>
+                    <path class="s-line s-line--soft" d="M44 107h142M91 76v62M138 76v62"/>
+                    <polyline class="s-trace" points="48,128 66,118 84,123 104,98 124,106 146,88 168,94 182,84"/>
                 </g>
 
-                <!-- robot -->
-                <g class="d-group" id="d-robot">
-                    <rect class="d-line d-fill" x="108" y="420" width="84" height="10"/>
-                    <path class="d-line d-fill" d="M120 420l6-30h48l6 30Z"/>
-                    <rect class="d-line d-fill" x="126" y="352" width="48" height="40" rx="3"/>
-                    <!-- braccio inferiore e avambraccio -->
-                    <g transform="translate(150 340) rotate(-64)"><rect class="d-line d-fill" x="-18" y="-17" width="186" height="34" rx="17"/></g>
-                    <g transform="translate(216 205) rotate(22)"><rect class="d-line d-fill" x="-14" y="-13" width="156" height="26" rx="13"/></g>
-                    <!-- giunti -->
-                    <circle class="d-line d-fill" cx="150" cy="340" r="24"/>
-                    <circle class="d-line" cx="150" cy="340" r="8"/>
-                    <circle class="d-line d-fill" cx="216" cy="205" r="18"/>
-                    <circle class="d-line" cx="216" cy="205" r="6"/>
-                    <circle class="d-line d-fill" cx="335" cy="253" r="12"/>
-                    <!-- utensile: pinza parallela -->
-                    <rect class="d-line d-fill" x="327" y="262" width="16" height="26"/>
-                    <rect class="d-line d-fill" x="304" y="288" width="62" height="7"/>
-                    <rect class="d-line d-fill" x="306" y="295" width="5" height="77"/>
-                    <rect class="d-line d-fill" x="359" y="295" width="5" height="77"/>
-                    <!-- collo prelevato -->
-                    <rect class="d-line d-fill" x="313" y="352" width="44" height="44"/>
-                    <path class="d-line d-line--soft" d="M335 352v44"/>
+                <!-- ROBOT -->
+                <g class="s-block">
+                    <rect class="s-box s-draw" pathLength="1" x="440" y="40" width="170" height="110"/>
+                    <text class="s-name" x="452" y="62">ROBOT</text>
+                    <rect class="s-box" x="480" y="132" width="90" height="8"/>
+                    <path class="s-line" d="M525 132 508 96 568 78"/>
+                    <circle class="s-joint" cx="525" cy="132" r="6"/>
+                    <circle class="s-joint" cx="508" cy="96" r="5"/>
+                    <circle class="s-joint" cx="568" cy="78" r="4"/>
+                    <path class="s-line" d="M568 78v12M560 90h16"/>
                 </g>
 
-                <!-- visione -->
-                <g class="d-group" id="d-vision">
-                    <rect class="d-line d-fill" x="562" y="262" width="8" height="168"/>
-                    <rect class="d-line d-fill" x="468" y="258" width="102" height="9"/>
-                    <rect class="d-line d-fill" x="456" y="267" width="40" height="22" rx="3"/>
-                    <rect class="d-line d-fill" x="468" y="289" width="16" height="8"/>
-                    <path class="d-acc d-dash" d="M476 297l-40 99M476 297l40 99"/>
-                    <path class="d-acc" d="M436 396h80"/>
+                <!-- PLC -->
+                <g class="s-block">
+                    <rect class="s-box s-box--main s-draw" pathLength="1" x="235" y="170" width="170" height="140"/>
+                    <text class="s-name" x="247" y="192">PLC · SAFETY</text>
+                    <g class="s-modules">
+                        <rect class="s-box" x="249" y="206" width="30" height="76"/>
+                        <rect class="s-box" x="285" y="206" width="30" height="76"/>
+                        <rect class="s-box" x="321" y="206" width="30" height="76"/>
+                        <rect class="s-box" x="357" y="206" width="30" height="76"/>
+                        <rect class="s-led" x="260" y="214" width="8" height="5"/>
+                        <rect class="s-led" x="296" y="214" width="8" height="5"/>
+                        <rect class="s-led s-led--warn" x="332" y="214" width="8" height="5"/>
+                        <rect class="s-led" x="368" y="214" width="8" height="5"/>
+                        <path class="s-line s-line--soft" d="M255 232h18M255 242h18M255 252h18M291 232h18M291 242h18M327 232h18M327 242h18M363 232h18M363 242h18M363 252h18"/>
+                    </g>
+                    <text class="s-tag" x="249" y="299">CPU</text>
+                    <text class="s-tag" x="291" y="299">DI</text>
+                    <text class="s-tag" x="327" y="299">DO</text>
+                    <text class="s-tag" x="361" y="299">F-DI</text>
                 </g>
 
-                <!-- bus segnali sotto pavimento -->
-                <g class="d-group" id="d-bus">
-                    <path class="d-acc" d="M62 430v34h504v-34M150 464v-34M270 464v-34"/>
-                    <circle class="d-node" cx="62" cy="464" r="3.5"/>
-                    <circle class="d-node" cx="150" cy="464" r="3.5"/>
-                    <circle class="d-node" cx="270" cy="464" r="3.5"/>
-                    <circle class="d-node" cx="566" cy="464" r="3.5"/>
+                <!-- SENSORI / VISIONE -->
+                <g class="s-block">
+                    <rect class="s-box s-draw" pathLength="1" x="30" y="330" width="170" height="80"/>
+                    <text class="s-name" x="42" y="352">SENSORI · VISIONE</text>
+                    <rect class="s-box" x="46" y="368" width="34" height="22"/>
+                    <circle class="s-joint" cx="63" cy="379" r="6"/>
+                    <path class="s-line s-line--dash" d="M80 379h100"/>
+                    <path class="s-line" d="M180 371v16"/>
                 </g>
 
-                <!-- didascalie -->
-                <g class="d-labels">
-                    <path class="d-line d-line--soft" d="M24 248h40"/>
-                    <text class="d-tag" x="24" y="240">01 PLC</text>
-                    <path class="d-line d-line--soft" d="M246 156h26l-40 40"/>
-                    <text class="d-tag" x="248" y="148">02 ROBOT</text>
-                    <path class="d-line d-line--soft" d="M392 232h36l26 30"/>
-                    <text class="d-tag" x="392" y="224">03 VISIONE</text>
-                    <text class="d-tag" x="572" y="484" text-anchor="end">04 BUS DI CAMPO</text>
+                <!-- AZIONAMENTI -->
+                <g class="s-block">
+                    <rect class="s-box s-draw" pathLength="1" x="440" y="330" width="170" height="80"/>
+                    <text class="s-name" x="452" y="352">AZIONAMENTI · I/O</text>
+                    <rect class="s-box" x="456" y="366" width="40" height="28"/>
+                    <circle class="s-joint" cx="522" cy="380" r="14"/>
+                    <path class="s-line" d="M496 380h12M522 366v28M508 380h28"/>
+                    <path class="s-line s-line--soft" d="M556 372h40M556 380h40M556 388h40"/>
+                </g>
+
+                <!-- linea / macchina -->
+                <g class="s-block">
+                    <text class="s-tag" x="123" y="303">I0.0</text>
+                    <text class="s-tag" x="533" y="303">Q0.3</text>
+                    <text class="s-tag" x="206" y="86">PROFINET</text>
+                    <rect class="s-box s-draw" pathLength="1" x="30" y="436" width="580" height="16" rx="8"/>
+                    <path class="s-line s-line--soft" d="M44 444h552"/>
+                    <g clip-path="url(#belt-clip)">
+                        <g class="s-parts">
+                            <rect class="s-box" x="-150" y="412" width="36" height="24"/>
+                            <rect class="s-box" x="40" y="412" width="36" height="24"/>
+                            <rect class="s-box" x="230" y="412" width="36" height="24"/>
+                            <rect class="s-box" x="420" y="412" width="36" height="24"/>
+                            <rect class="s-box" x="610" y="412" width="36" height="24"/>
+                        </g>
+                    </g>
+                    <text class="s-tag" x="30" y="478">MACCHINA / LINEA DI PRODUZIONE</text>
+                    <text class="s-tag" x="610" y="478" text-anchor="end">SCHEMA ILLUSTRATIVO</text>
                 </g>
             </svg>
-            <figcaption class="visually-hidden">Schema di principio di una cella robotizzata con armadio PLC, robot, visione e nastro trasportatore.</figcaption>
+
+            <!-- versione compatta (mobile): stessa catena, in verticale -->
+            <svg class="schematic__svg schematic__svg--compact" viewBox="0 0 320 420" role="img" aria-label="Schema di principio: HMI e SCADA, PLC, robot e sensori, linea di produzione">
+                <defs><clipPath id="belt-clip-c"><rect x="10" y="306" width="300" height="30"/></clipPath></defs>
+                <path class="s-line" d="M160 66V104M160 184V222M80 222H240M80 222V244M240 222V244M80 304V336M240 304V336"/>
+                <path class="s-sig" d="M160 66V104M160 184V222M80 222H240M80 222V244M240 222V244"/>
+                <circle class="s-node" cx="160" cy="222" r="3.5"/>
+
+                <rect class="s-box" x="60" y="10" width="200" height="56"/>
+                <text class="s-name" x="76" y="32">HMI / SCADA</text>
+                <polyline class="s-trace" points="76,56 98,48 120,52 144,42 168,46 190,38 244,44"/>
+
+                <rect class="s-box s-box--main" x="60" y="104" width="200" height="80"/>
+                <text class="s-name" x="76" y="128">PLC · SAFETY</text>
+                <rect class="s-led" x="76" y="146" width="8" height="5"/><rect class="s-led" x="96" y="146" width="8" height="5"/><rect class="s-led s-led--warn" x="116" y="146" width="8" height="5"/><rect class="s-led" x="136" y="146" width="8" height="5"/>
+                <path class="s-line s-line--soft" d="M76 164h168"/>
+
+                <rect class="s-box" x="10" y="244" width="140" height="60"/>
+                <text class="s-name" x="22" y="268">ROBOT</text>
+                <text class="s-tag" x="22" y="290">Q0.3</text>
+                <rect class="s-box" x="170" y="244" width="140" height="60"/>
+                <text class="s-name" x="182" y="268">VISIONE</text>
+                <text class="s-tag" x="182" y="290">I0.0</text>
+
+                <rect class="s-box" x="10" y="336" width="300" height="16" rx="8"/>
+                <g clip-path="url(#belt-clip-c)">
+                    <g class="s-parts s-parts--compact">
+                        <rect class="s-box" x="-120" y="316" width="32" height="20"/>
+                        <rect class="s-box" x="30" y="316" width="32" height="20"/>
+                        <rect class="s-box" x="180" y="316" width="32" height="20"/>
+                        <rect class="s-box" x="330" y="316" width="32" height="20"/>
+                    </g>
+                </g>
+                <text class="s-tag" x="10" y="380">MACCHINA / LINEA DI PRODUZIONE</text>
+                <text class="s-tag" x="10" y="400">SCHEMA ILLUSTRATIVO</text>
+            </svg>
+            <figcaption class="visually-hidden">Schema illustrativo di una cella robotizzata: HMI e SCADA e PLC al centro del controllo, con robot, azionamenti e sensori di visione che agiscono sulla linea.</figcaption>
         </figure>
     </div>
 
     <div class="container">
-        <ul class="spec-strip" aria-label="Piattaforme su cui lavoriamo">
-            <li><span class="label">PLC</span><strong>Siemens</strong><span>TIA Portal, Safety</span></li>
-            <li><span class="label">Robot</span><strong>ABB · FANUC · Epson</strong><span>Programmazione e integrazione</span></li>
-            <li><span class="label">Visione</span><strong>Keyence</strong><span>Controllo e lettura DMC</span></li>
-            <li><span class="label">SCADA</span><strong>Ignition</strong><span>Supervisione e dati</span></li>
+        <ul class="sysbar" aria-hidden="true">
+            <li><span class="led led--blink"></span>PLC <b>ONLINE</b></li>
+            <li><span class="led"></span>HMI <b>ONLINE</b></li>
+            <li><span class="led"></span>SAFETY <b>OK</b></li>
+            <li><span class="led"></span>ROBOT <b>READY</b></li>
+            <li><span class="led"></span>NETWORK <b>OK</b></li>
         </ul>
     </div>
 </section>

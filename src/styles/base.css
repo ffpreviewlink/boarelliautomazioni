@@ -13,7 +13,7 @@ body {
     margin: 0;
     background: var(--bg);
     color: var(--text-2);
-    font: 400 var(--fs-base)/1.65 var(--font-sans);
+    font: 400 var(--fs-base)/1.6 var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     overflow-x: clip;
@@ -27,20 +27,20 @@ button { font: inherit; color: inherit; }
 
 h1, h2, h3 {
     color: var(--text);
+    font-family: var(--font-head);
     font-weight: 600;
-    line-height: 1.12;
-    letter-spacing: -0.02em;
+    line-height: 1.08;
+    letter-spacing: -0.005em;
     text-wrap: balance;
 }
 p { text-wrap: pretty; }
-strong { color: var(--text); font-weight: 600; }
+strong { color: var(--text); font-weight: 500; }
 
-::selection { background: var(--accent); color: #fff; }
+::selection { background: var(--accent); color: var(--on-accent); }
 
 :focus-visible {
     outline: 2px solid var(--accent-hi);
     outline-offset: 3px;
-    border-radius: var(--radius);
 }
 
 .container {
@@ -66,13 +66,11 @@ strong { color: var(--text); font-weight: 600; }
     z-index: 100;
     padding: 0.6rem 1rem;
     background: var(--accent);
-    color: #fff;
+    color: var(--on-accent);
     font-weight: 500;
-    border-radius: var(--radius);
 }
 .skip-link:focus { top: 0.75rem; }
 
 /* sezioni */
 .section { padding-block: var(--section-y); position: relative; }
-.section--rule { border-top: var(--border); }
-.section--navy { background: var(--bg-navy); border-block: var(--border); }
+.section--alt { background: var(--bg-2); border-block: var(--border); }

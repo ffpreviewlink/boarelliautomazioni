@@ -1,65 +1,50 @@
 /* ============================================================
-   PROCESSO — sequenza tecnica con linea e nodi numerati
-   Mobile: binario verticale. Da 700px: colonne con linea orizzontale.
+   PROCESSO: pipeline continua. Verticale su mobile/tablet, orizzontale su desktop.
+   La linea si "alimenta" una volta all'ingresso (solo con JS e movimento ammesso).
    ============================================================ */
-.steps { display: grid; }
+.pipe-ends { display: none; justify-content: space-between; margin-bottom: var(--s-4); }
 
-.step {
-    position: relative;
-    padding: 0 0 var(--s-6) 3.25rem;
-}
-.step:last-child { padding-bottom: 0; }
+.pipe { position: relative; display: grid; gap: var(--s-6); padding-left: 2.5rem; }
 /* binario */
-.step::before {
+.pipe::before, .pipe::after {
     content: "";
     position: absolute;
-    left: 0.9375rem; top: 2rem; bottom: 0;
-    width: 1px;
-    background: var(--line-2);
+    left: 0.4375rem; top: 0.5rem; bottom: 0.5rem;
+    width: 2px;
+}
+.pipe::before { background: var(--steel-2); }
+.pipe::after {
+    background: var(--accent-hi);
     transform-origin: top;
+    transition: transform 1.8s linear;
 }
-.step:last-child::before { display: none; }
-.step__num {
+.js .pipe:not(.is-live)::after { transform: scaleY(0); }
+
+.pipe__step { position: relative; display: grid; gap: var(--s-2); align-content: start; }
+.pipe__node {
     position: absolute;
-    left: 0; top: 0;
-    display: grid;
-    place-items: center;
-    width: 1.875rem; height: 1.875rem;
+    left: -2.5rem; top: 0.15rem;
+    width: 1rem; height: 1rem;
     background: var(--bg);
-    border: 1px solid var(--accent-hi);
-    border-radius: var(--radius);
-    font: 500 var(--fs-xs)/1 var(--font-mono);
-    color: var(--accent-hi);
+    border: 2px solid var(--accent-hi);
+    transition: background-color 0.2s;
+    transition-delay: calc(var(--i) * 0.3s);
 }
-.step h3 { padding-top: 0.2rem; font-size: var(--fs-h3); }
-.step p { margin-top: var(--s-2); font-size: var(--fs-sm); max-width: 44ch; }
+.js .pipe:not(.is-live) .pipe__node { border-color: var(--steel-3); }
+.pipe.is-live .pipe__node { background: var(--accent-hi); }
+.pipe__step h3 { font-size: var(--fs-h3); font-weight: 700; }
+.pipe__step p { font-size: var(--fs-sm); max-width: 44ch; }
+.pipe__code { color: var(--accent-hi); }
 
-@media (min-width: 700px) {
-    .steps { grid-template-columns: repeat(3, 1fr); column-gap: var(--s-5); row-gap: var(--s-7); }
-    .step { padding: 3.25rem 0 0; }
-    .step::before {
-        left: 1.875rem; right: calc(var(--s-5) * -1); top: 0.9375rem; bottom: auto;
-        width: auto; height: 1px;
-        transform-origin: left;
-    }
-    .step:nth-child(3n)::before { right: 0; }
-    .step:last-child::before { display: block; right: 0; }
-    .step:nth-child(3n)::before, .step:last-child::before { background: linear-gradient(90deg, var(--line-2), transparent); }
-    .step p { max-width: 34ch; }
+@media (min-width: 700px) and (max-width: 1099px) {
+    .pipe { max-width: 44rem; }
 }
-@media (min-width: 1180px) {
-    .steps { grid-template-columns: repeat(6, 1fr); row-gap: 0; }
-    .step:nth-child(3n)::before { right: calc(var(--s-5) * -1); background: var(--line-2); }
-    .step:last-child::before { right: 0; background: linear-gradient(90deg, var(--line-2), transparent); }
-    .step h3 { font-size: 1.125rem; }
-}
-
-/* linea che si traccia quando il passo entra in vista */
-@media (prefers-reduced-motion: no-preference) {
-    .js .step::before { transform: scaleY(0); transition: transform 0.9s var(--ease) 0.2s; }
-    .js .step.is-visible::before { transform: scaleY(1); }
-    @media (min-width: 700px) {
-        .js .step::before { transform: scaleX(0); }
-        .js .step.is-visible::before { transform: scaleX(1); }
-    }
+@media (min-width: 1100px) {
+    .pipe-ends { display: flex; }
+    .pipe { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--s-5); padding: 2.25rem 0 0; }
+    .pipe::before, .pipe::after { left: 0; right: 0; top: 0.4375rem; bottom: auto; width: auto; height: 2px; }
+    .pipe::after { transform-origin: left; }
+    .js .pipe:not(.is-live)::after { transform: scaleX(0); }
+    .pipe__node { left: 0; top: -1.8125rem; }
+    .pipe__step { padding-right: var(--s-2); }
 }

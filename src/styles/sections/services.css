@@ -1,49 +1,104 @@
 /* ============================================================
-   SERVIZI — elenco editoriale, righe separate da linee sottili
+   SERVIZI: moduli di engineering. Elenco tecnico + pannello ispettore.
+   Senza JS tutti i moduli sono aperti. Con JS: un modulo attivo alla volta.
    ============================================================ */
-.services { border-top: var(--border-strong); }
+.mods { display: grid; border-top: var(--border-strong); }
+.mod { border-bottom: var(--border-strong); }
 
-.service {
+.mod__head { font-size: inherit; line-height: inherit; }
+.mod__head > .mod__code,
+.mod__head > .mod__name { display: block; }
+.mod__btn {
     position: relative;
     display: grid;
-    gap: var(--s-3);
-    padding: var(--s-6) 0;
-    border-bottom: var(--border);
-    transition: background-color 0.3s;
+    gap: 0.35rem;
+    width: 100%;
+    padding: 1.1rem 3rem 1.1rem 1.25rem;
+    background: none;
+    border: 0;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.15s;
 }
-/* barra accent a sinistra: compare in hover */
-.service::before {
+.mod__head:not(:has(button)) { padding: 1.1rem 1.25rem 0.5rem; }
+.mod__name {
+    font: 600 var(--fs-h3)/1.15 var(--font-head);
+    color: var(--text-2);
+    transition: color 0.15s;
+}
+.mod__btn::before {          /* barra di selezione */
     content: "";
     position: absolute;
-    left: 0; top: -1px; bottom: -1px;
-    width: 2px;
-    background: var(--accent-hi);
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: transform 0.4s var(--ease);
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--steel-2);
+    transition: background-color 0.15s;
 }
-.service__num {
-    font: 500 var(--fs-sm)/1 var(--font-mono);
-    letter-spacing: 0.08em;
-    color: var(--text-3);
-    transition: color 0.25s;
+.mod__btn::after {           /* indicatore +/− */
+    content: "";
+    position: absolute;
+    right: 1.25rem; top: 50%;
+    width: 0.6rem; height: 0.6rem;
+    margin-top: -0.45rem;
+    border-right: 2px solid var(--steel-3);
+    border-bottom: 2px solid var(--steel-3);
+    transform: rotate(45deg);
+    transition: transform 0.2s var(--ease), border-color 0.15s;
 }
-.service__title { font-size: var(--fs-h3); }
-.service__body { display: grid; gap: var(--s-4); max-width: 56ch; }
+.mod__btn:hover { background: var(--panel); }
+.mod__btn:hover .mod__name { color: var(--text); }
+.mod.is-active .mod__btn { background: var(--panel); }
+.mod.is-active .mod__btn::before { background: var(--accent); }
+.mod.is-active .mod__btn::after { transform: rotate(-135deg); margin-top: -0.2rem; border-color: var(--accent-hi); }
+.mod.is-active .mod__name { color: var(--text); }
+.mod.is-active .mod__code { color: var(--accent-hi); }
 
-@media (hover: hover) {
-    .service:hover { background: var(--surface); }
-    .service:hover::before { transform: scaleY(1); }
-    .service:hover .service__num { color: var(--accent-hi); }
-}
+/* pannello */
+.mod__panel { border-width: 0; border-top: var(--border); background: var(--panel); }
+.mod__panel .panel__bar { display: none; }
+.mod__body { display: grid; gap: var(--s-4); padding: var(--s-4) 1.25rem var(--s-5) 1.25rem; }
+.mod__body p { max-width: 60ch; color: var(--text-2); }
+.js .mod:not(.is-active) .mod__panel { display: none; }
 
-@media (min-width: 900px) {
-    .service {
-        grid-template-columns: 4.5rem minmax(0, 5fr) minmax(0, 6fr);
-        gap: var(--s-6);
+@media (min-width: 960px) {
+    .mods {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+        grid-template-rows: repeat(6, auto);
+        border-top: 0;
+        gap: 0 var(--s-7);
         align-items: start;
-        padding: var(--s-6) var(--s-4);
     }
-    .service__num { padding-top: 0.5rem; }
-    .service__title { font-size: clamp(1.375rem, 1rem + 0.9vw, 1.75rem); }
+    .mod { display: contents; }
+    .mod__head { grid-column: 1; grid-row: var(--i); border-bottom: var(--border-strong); }
+    .mod:first-child .mod__head { border-top: var(--border-strong); }
+    .mod__btn { padding: 1.15rem 3rem 1.15rem 1.5rem; }
+    .mod__btn::after { transform: rotate(-45deg); margin-top: -0.3rem; }
+    .mod.is-active .mod__btn::after { transform: rotate(-45deg); margin-top: -0.3rem; }
+    .mod__head:not(:has(button)) { padding: 1.15rem 1.5rem; }
+    .mod__panel {
+        grid-column: 2;
+        grid-row: 1 / span 6;
+        position: sticky;
+        top: calc(var(--header-h) + 1.5rem);
+        border: var(--border-strong);
+        border-top-color: var(--accent);
+        border-top-width: 3px;
+        min-height: 18rem;
+    }
+    .mod__panel .panel__bar { display: flex; }
+    .mod__body { padding: var(--s-6) var(--s-5); gap: var(--s-5); }
+    .mod__body p { font-size: var(--fs-md); }
+    /* linea di segnale in fondo al pannello */
+    .mod__panel::after {
+        content: "";
+        display: block;
+        height: 6px;
+        margin: 0 var(--s-5) var(--s-5);
+        background: repeating-linear-gradient(90deg, var(--steel-2) 0 2px, transparent 2px 12px);
+    }
+    .js .mod:not(.is-active) .mod__panel { display: none; }
+    html:not(.js) .mods { display: grid; }
+    html:not(.js) .mod { display: block; }
+    html:not(.js) .mod__head, html:not(.js) .mod__panel { grid-column: auto; grid-row: auto; position: static; }
+    html:not(.js) .mods { grid-template-columns: 1fr; }
 }

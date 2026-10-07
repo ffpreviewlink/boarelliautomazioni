@@ -1,54 +1,78 @@
 /* ============================================================
-   CONTATTI — CTA statiche (mailto / tel), nessun form
+   CONTATTI: apertura di una collaborazione tecnica
    ============================================================ */
-.contact { border-top: var(--border); }
-.contact__grid { display: grid; gap: var(--s-6); align-items: start; }
-.contact__actions { display: grid; gap: var(--s-3); }
+.contact {
+    background: var(--bg-2);
+    border-top: 0;
+    padding-top: calc(var(--section-y) + 0.5rem);
+}
+/* nastro safety: unico uso nel sito, segnala l'ingresso in macchina */
+.contact::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 0.5rem;
+    background: repeating-linear-gradient(-45deg, var(--accent) 0 14px, #0b0c0d 14px 28px);
+}
 
-.contact-card {
+.contact__grid { display: grid; gap: var(--s-7); align-items: start; }
+.contact__title {
+    font-size: clamp(2.5rem, 1.6rem + 4.2vw, 4.75rem);
+    font-weight: 700;
+    line-height: 0.98;
+    text-transform: uppercase;
+    max-width: 14ch;
+}
+.contact__sub { max-width: 46ch; margin-top: var(--s-5); font-size: var(--fs-md); }
+.contact__actions { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-6); }
+
+/* pannello richiesta */
+.inquiry { background: var(--panel); }
+.inquiry__body { display: grid; gap: var(--s-4); padding: var(--s-5); }
+.inquiry__types { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.inquiry__types button,
+html:not(.js) .inquiry__types li {
+    padding: 0.55rem 0.9rem;
+    background: transparent;
+    border: 1px solid var(--steel-3);
+    font: 500 0.8125rem/1.2 var(--font-mono);
+    letter-spacing: 0.04em;
+    color: var(--text-2);
+}
+.inquiry__types button { cursor: pointer; display: inline-flex; align-items: center; gap: 0.55rem; transition: border-color 0.15s, color 0.15s, background-color 0.15s; }
+.inquiry__types button::before { content: ""; width: 0.5rem; height: 0.5rem; border: 1px solid var(--steel-3); }
+.inquiry__types button:hover { border-color: var(--accent-hi); color: var(--text); }
+.inquiry__types button[aria-pressed="true"] { border-color: var(--accent-hi); background: var(--accent-dim); color: var(--text); }
+.inquiry__types button[aria-pressed="true"]::before { background: var(--accent-hi); border-color: var(--accent-hi); }
+
+.inquiry__brief-title { margin-top: var(--s-3); padding-top: var(--s-4); border-top: var(--border-strong); }
+.inquiry__brief { display: grid; gap: var(--s-2); }
+.inquiry__brief li { display: grid; grid-template-columns: 2rem 1fr; align-items: baseline; font-size: var(--fs-sm); }
+.inquiry__brief .mono { color: var(--accent-hi); }
+
+/* dati di contatto */
+.facts {
     display: grid;
-    gap: var(--s-2);
-    padding: var(--s-5);
-    border: 1px solid var(--line-3);
-    border-radius: var(--radius);
-    transition: border-color 0.2s, background-color 0.2s;
+    margin-top: var(--s-7);
+    border-top: var(--border-strong);
 }
-.contact-card strong { font-size: clamp(1.125rem, 0.9rem + 1.2vw, 1.5rem); font-weight: 500; overflow-wrap: anywhere; }
-.contact-card__cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin-top: var(--s-3);
-    font-weight: 500;
-    color: var(--accent-hi);
+.facts > div { display: grid; gap: 0.25rem; padding: var(--s-4) 0; border-bottom: var(--border); }
+.facts dd { color: var(--text); overflow-wrap: anywhere; }
+.facts > div:nth-child(4) dd { white-space: nowrap; }
+.facts a { transition: color 0.15s; }
+.facts a:hover { color: var(--accent-hi); }
+
+@media (max-width: 479px) {
+    .contact__actions .btn { width: 100%; white-space: normal; }
 }
-.contact-card:hover { border-color: var(--accent-hi); background: var(--surface); }
-.contact-card:hover .contact-card__cta svg { transform: translateX(3px); }
-.contact-card--primary { background: var(--accent); border-color: var(--accent); }
-.contact-card--primary .label { color: #fff; }
-.contact-card--primary strong,
-.contact-card--primary .contact-card__cta { color: #fff; }
-.contact-card--primary:hover { background: #2a62bb; border-color: var(--accent-hi); }
-
-.contact__details { display: grid; border-top: var(--border-strong); margin-top: var(--s-3); }
-.contact__details > div { display: grid; gap: 0.3rem; padding: var(--s-4) 0; border-bottom: var(--border); }
-.contact__details dd { color: var(--text); }
-
-.brief { padding: var(--s-5); background: var(--surface); border: var(--border-strong); border-radius: var(--radius-lg); }
-.brief ol { display: grid; margin-top: var(--s-4); }
-.brief li {
-    display: grid;
-    grid-template-columns: 2.25rem 1fr;
-    gap: var(--s-3);
-    padding: var(--s-4) 0;
-    border-top: var(--border);
-    color: var(--text);
+@media (min-width: 640px) {
+    .facts { grid-template-columns: repeat(2, 1fr); gap: 0 var(--s-6); }
 }
-.brief li span { font: 500 var(--fs-xs)/1.9 var(--font-mono); color: var(--accent-hi); }
-
-@media (min-width: 560px) { .brief { padding: var(--s-6); } }
 @media (min-width: 960px) {
-    .contact__grid { grid-template-columns: repeat(12, 1fr); column-gap: var(--s-6); }
-    .contact__actions { grid-column: 1 / span 6; }
-    .brief { grid-column: 8 / -1; }
+    .contact__grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: var(--s-8); }
+}
+@media (min-width: 1100px) {
+    .facts { grid-template-columns: 1.5fr 0.95fr 1.5fr 1.05fr 1.05fr; border-bottom: var(--border-strong); }
+    .facts > div { padding: var(--s-5) var(--s-5) var(--s-5) 0; border-bottom: 0; }
+    .facts > div + div { padding-left: var(--s-5); border-left: var(--border); }
 }

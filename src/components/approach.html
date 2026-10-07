@@ -1,64 +1,30 @@
-<section class="section section--rule" id="approccio" aria-labelledby="approccio-title">
-    <div class="container">
-        <!-- @include components/section-head.html id="approccio" idx="06" label="Approccio tecnico" heading="Dal controllo alla produzione." sub="Software pensato da chi lavora davvero sulla linea: dal segnale di campo al dato di produzione." -->
+<section class="section section--alt" id="approccio" aria-labelledby="approccio-title">
+    <div class="container approach">
+        <div class="approach__head">
+            <!-- @include components/section-head.html id="approccio" heading="Dal controllo alla produzione." sub="Software pensato da chi lavora davvero sulla linea: dal segnale di campo al dato di produzione." -->
+        </div>
 
-        <div class="approach">
-            <ul class="principles">
-                <li class="principle" data-reveal>
-                    <span class="principle__mark" aria-hidden="true"></span>
-                    <div>
-                        <h3>Leggibile</h3>
-                        <p>Codice strutturato e mantenibile, senza complicazioni inutili.</p>
-                    </div>
+        <div class="panel hmi" data-reveal>
+            <div class="panel__bar"><span class="mono">Stato sistema</span><span class="state">Online</span></div>
+            <ul class="hmi__rows">
+                <li class="hmi__row">
+                    <div class="hmi__line"><h3>Leggibile</h3><span class="hmi__dots" aria-hidden="true"></span><span class="state" aria-hidden="true">OK</span></div>
+                    <p>Codice strutturato e mantenibile, senza complicazioni inutili.</p>
                 </li>
-                <li class="principle" data-reveal>
-                    <span class="principle__mark" aria-hidden="true"></span>
-                    <div>
-                        <h3>Diagnosticabile</h3>
-                        <p>Diagnostica e troubleshooting orientati a ridurre i tempi di fermo.</p>
-                    </div>
+                <li class="hmi__row">
+                    <div class="hmi__line"><h3>Diagnosticabile</h3><span class="hmi__dots" aria-hidden="true"></span><span class="state" aria-hidden="true">OK</span></div>
+                    <p>Diagnostica e troubleshooting orientati a ridurre i tempi di fermo.</p>
                 </li>
-                <li class="principle" data-reveal>
-                    <span class="principle__mark" aria-hidden="true"></span>
-                    <div>
-                        <h3>Su misura del processo</h3>
-                        <p>Software sviluppato sulle esigenze reali della macchina e del processo.</p>
-                    </div>
+                <li class="hmi__row">
+                    <div class="hmi__line"><h3>Su misura del processo</h3><span class="hmi__dots" aria-hidden="true"></span><span class="state" aria-hidden="true">OK</span></div>
+                    <p>Software sviluppato sulle esigenze reali della macchina e del processo.</p>
                 </li>
-                <li class="principle" data-reveal>
-                    <span class="principle__mark" aria-hidden="true"></span>
-                    <div>
-                        <h3>Presente in campo</h3>
-                        <p>Supporto remoto e interventi in stabilimento quando servono, anche durante avviamento e collaudo.</p>
-                    </div>
+                <li class="hmi__row">
+                    <div class="hmi__line"><h3>Presente in campo</h3><span class="hmi__dots" aria-hidden="true"></span><span class="state" aria-hidden="true">OK</span></div>
+                    <p>Supporto remoto e interventi in stabilimento quando servono, anche durante avviamento e collaudo.</p>
                 </li>
             </ul>
-
-            <figure class="stack" data-reveal>
-                <ol class="stack__layers">
-                    <li class="stack__layer">
-                        <span class="stack__lvl label">Livello 4</span>
-                        <h3>Supervisione e dati</h3>
-                        <ul class="tags"><li>HMI</li><li>SCADA</li><li>Ricette</li><li>Storicizzazione</li><li>Database</li></ul>
-                    </li>
-                    <li class="stack__layer">
-                        <span class="stack__lvl label">Livello 3</span>
-                        <h3>Controllo macchina</h3>
-                        <ul class="tags"><li>PLC</li><li>Safety</li><li>Comunicazioni industriali</li></ul>
-                    </li>
-                    <li class="stack__layer">
-                        <span class="stack__lvl label">Livello 2</span>
-                        <h3>Robot e visione</h3>
-                        <ul class="tags"><li>Robot</li><li>Visione</li><li>Lettura codici</li></ul>
-                    </li>
-                    <li class="stack__layer">
-                        <span class="stack__lvl label">Livello 1</span>
-                        <h3>Campo</h3>
-                        <ul class="tags"><li>Sensori</li><li>Azionamenti</li><li>I/O</li><li>Reti</li></ul>
-                    </li>
-                </ol>
-                <figcaption>Schema di principio dei livelli su cui interveniamo. Non rappresenta l'architettura di uno specifico impianto.</figcaption>
-            </figure>
+            <div class="hmi__foot mono" aria-hidden="true"><span class="led led--blink"></span>Macchina pronta</div>
         </div>
     </div>
 </section>

@@ -1,35 +1,42 @@
 /* ============================================================
-   AMBITI DI INTERVENTO — tabella di celle con bordi sottili
+   APPLICAZIONI: matrice tecnica a bordi condivisi, simbolo + codice
    ============================================================ */
-.cells {
+.apps {
     display: grid;
     border-top: var(--border-strong);
     border-left: var(--border-strong);
 }
-.cell {
+.app {
     position: relative;
     display: grid;
     gap: var(--s-3);
     align-content: start;
-    padding: var(--s-6) var(--s-5);
+    padding: var(--s-5);
     border-right: var(--border-strong);
     border-bottom: var(--border-strong);
+    background: var(--bg);
+    transition: background-color 0.2s;
 }
-.cell::before {
+.app__top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: var(--s-3); }
+.app__icon { width: 4rem; height: 4rem; color: var(--steel-3); transition: color 0.2s; }
+.app__code { display: inline-flex; align-items: center; gap: 0.5rem; }
+.app h3 { font-size: var(--fs-h3); font-weight: 700; }
+.app p { font-size: var(--fs-sm); max-width: 44ch; }
+/* linea di scansione in basso */
+.app::after {
     content: "";
     position: absolute;
-    left: -1px; right: -1px; top: -1px;
-    height: 2px;
-    background: var(--accent-hi);
+    left: 0; bottom: -1px;
+    height: 3px; width: 100%;
+    background: var(--accent);
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.45s var(--ease);
+    transition: transform 0.35s var(--ease);
 }
-.cell__code { font: 500 var(--fs-xs)/1 var(--font-mono); letter-spacing: 0.12em; color: var(--accent-hi); }
-.cell h3 { font-size: var(--fs-h3); }
-.cell p { font-size: var(--fs-sm); max-width: 38ch; }
+.app:hover { background: var(--panel); }
+.app:hover::after { transform: scaleX(1); }
+.app:hover .app__icon { color: var(--accent-hi); }
+.app:hover .led { background: var(--ok); box-shadow: 0 0 0 3px var(--ok-dim); }
 
-@media (hover: hover) { .cell:hover::before { transform: scaleX(1); } }
-
-@media (min-width: 640px)  { .cells { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1000px) { .cells { grid-template-columns: repeat(3, 1fr); } .cell { padding: var(--s-7) var(--s-6); } }
+@media (min-width: 640px) { .apps { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .apps { grid-template-columns: repeat(3, 1fr); } .app { padding: var(--s-6) var(--s-5); } }

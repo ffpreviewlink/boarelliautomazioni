@@ -1,74 +1,36 @@
 /* ============================================================
-   APPROCCIO TECNICO — principi + schema a livelli
+   APPROCCIO: pannello "stato sistema" in stile HMI
    ============================================================ */
-.approach { display: grid; gap: var(--s-7); align-items: start; }
+.approach { display: grid; gap: var(--s-6); align-items: start; }
+.approach__head .section-head { margin-bottom: 0; }
 
-.principles { display: grid; border-top: var(--border-strong); }
-.principle {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: var(--s-4);
-    padding: var(--s-5) 0;
-    border-bottom: var(--border);
+.hmi { background: #0e1012; }
+.hmi__row { padding: var(--s-4) var(--s-4) var(--s-4); border-bottom: var(--border); }
+.hmi__line { display: flex; align-items: baseline; gap: var(--s-3); }
+.hmi__line h3 { font-size: var(--fs-h3); font-weight: 700; flex: none; max-width: 70%; }
+.hmi__dots {
+    flex: 1;
+    min-width: 1rem;
+    align-self: center;
+    height: 2px;
+    background: repeating-linear-gradient(90deg, var(--steel-3) 0 2px, transparent 2px 7px);
 }
-.principle__mark {
-    width: 0.625rem; height: 0.625rem;
-    margin-top: 0.55rem;
-    background: var(--accent-hi);
+.hmi__row p { margin-top: var(--s-2); max-width: 52ch; font-size: var(--fs-sm); }
+.hmi__foot {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.7rem var(--s-4);
+    background: var(--panel-2);
+    color: var(--ok);
 }
-.principle h3 { font-size: var(--fs-h3); }
-.principle p { margin-top: var(--s-2); max-width: 46ch; }
-
-/* schema a livelli: i livelli sono collegati da un bus verticale */
-.stack {
-    padding: var(--s-5);
-    background: var(--surface);
-    border: var(--border-strong);
-    border-radius: var(--radius-lg);
-}
-.stack__layers { position: relative; display: grid; gap: var(--s-4); }
-.stack__layer {
-    position: relative;
-    display: grid;
-    gap: var(--s-2);
-    padding: var(--s-4);
-    background: var(--bg);
-    border: 1px solid var(--line-2);
-    border-radius: var(--radius);
-}
-.stack__layer h3 { font-size: 1.0625rem; }
-/* collegamento tra i livelli */
-.stack__layer:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    left: 50%; top: 100%;
-    width: 1px; height: var(--s-4);
-    background: var(--accent-hi);
-}
-.stack__layer:not(:last-child)::before {
-    content: "";
-    position: absolute;
-    left: calc(50% - 3px); top: calc(100% + var(--s-4) / 2 - 3px);
-    width: 7px; height: 7px;
-    background: var(--accent-hi);
-    z-index: 1;
-}
-.stack figcaption {
-    margin-top: var(--s-5);
-    font: 400 var(--fs-xs)/1.6 var(--font-mono);
-    letter-spacing: 0.02em;
-    color: var(--text-3);
+@media (prefers-reduced-motion: no-preference) {
+    .hmi__row .state { transition: opacity 0.2s; }
+    .hmi__row:hover .state { animation: blink 0.8s steps(1, end) 2; }
 }
 
-@media (min-width: 560px) {
-    .stack { padding: var(--s-6); }
-    .stack__layer { grid-template-columns: 6.5rem 1fr; grid-template-areas: "lvl h" "lvl tags"; column-gap: var(--s-4); align-items: baseline; }
-    .stack__lvl { grid-area: lvl; }
-    .stack__layer h3 { grid-area: h; }
-    .stack__layer .tags { grid-area: tags; }
-}
 @media (min-width: 960px) {
-    .approach { grid-template-columns: repeat(12, 1fr); column-gap: var(--s-6); }
-    .principles { grid-column: 1 / span 5; }
-    .stack { grid-column: 7 / -1; }
+    .approach { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-8); }
+    .approach__head { position: sticky; top: calc(var(--header-h) + 2rem); }
+    .hmi__row { padding: var(--s-5); }
 }

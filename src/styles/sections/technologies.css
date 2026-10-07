@@ -1,0 +1,56 @@
+/* ============================================================
+   TECNOLOGIE: albero di engineering (rami → foglie), non una griglia di loghi
+   ============================================================ */
+.tech { display: grid; gap: var(--s-6); align-items: start; }
+.tech__head .section-head { margin-bottom: 0; }
+
+.tree { padding: var(--s-2) 0; }
+.tree__branch {
+    position: relative;
+    display: grid;
+    gap: var(--s-3);
+    padding: var(--s-4) var(--s-4) var(--s-4) 2.25rem;
+    border-bottom: var(--border);
+}
+.tree__branch:last-child { border-bottom: 0; }
+/* tronco e ramo */
+.tree__branch::before {
+    content: "";
+    position: absolute;
+    left: 1rem; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--steel-2);
+}
+.tree__branch:last-child::before { bottom: auto; height: 2.1rem; }
+.tree__branch::after {
+    content: "";
+    position: absolute;
+    left: 1rem; top: 2.1rem;
+    width: 0.75rem; height: 1px;
+    background: var(--steel-2);
+}
+.tree__name {
+    display: flex;
+    align-items: baseline;
+    gap: 0.85rem;
+    font-size: var(--fs-h3);
+    font-weight: 700;
+    transition: color 0.15s;
+}
+.tree__name .mono { color: var(--accent-hi); }
+.tree__leaves { display: flex; flex-wrap: wrap; gap: 0.35rem 1.5rem; }
+.tree__leaves li {
+    display: inline-flex;
+    gap: 0.5rem;
+    font: 400 0.875rem/1.5 var(--font-mono);
+    color: var(--text-2);
+}
+.tree__leaves li::before { content: "└─"; color: var(--steel-3); }
+.tree__branch:hover::after { background: var(--accent-hi); }
+.tree__branch:hover .tree__leaves li { color: var(--text); }
+
+@media (min-width: 960px) {
+    .tech { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-8); }
+    .tech__head { position: sticky; top: calc(var(--header-h) + 2rem); }
+    .tree__branch { grid-template-columns: 13rem 1fr; gap: var(--s-5); align-items: baseline; padding-left: 2.5rem; }
+}

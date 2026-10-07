@@ -7,8 +7,9 @@
 @import "layout/header.css";
 @import "layout/footer.css";
 @import "sections/hero.css";
-@import "sections/about.css";
+@import "sections/control.css";
 @import "sections/services.css";
+@import "sections/technologies.css";
 @import "sections/applications.css";
 @import "sections/process.css";
 @import "sections/approach.css";
