@@ -3,7 +3,7 @@
    - src/pages/*.html        pagine (front-matter in commento + contenuto)
    - src/layouts/base.html   layout comune (<head>, header, footer)
    - src/components/*.html   partial inclusi con <!-- @include ... -->
-   - src/styles/index.css    entry CSS (risolve gli @import e minifica)
+   - src/styles/index.css    entry CSS (risolve gli @import, minifica e incorpora in <style>)
    - src/scripts/main.js     JS (minificato)
    - src/assets/             font e immagini  -> dist/assets/
    - public/                 file copiati in radice (robots, sitemap)
@@ -116,6 +116,7 @@ async function minifyInlineScripts(html) {
 }
 
 async function run() {
+    let inlinedCss = '';
     await rm(DIST, { recursive: true, force: true });
     await mkdir(path.join(DIST, 'assets'), { recursive: true });
 
@@ -126,8 +127,8 @@ async function run() {
         const out = new CleanCSS({ level: 1 }).minify(src);
         if (out.errors.length) throw new Error('CSS: ' + out.errors.join(', '));
         if (out.warnings.length) console.warn('CSS warning:\n  ' + out.warnings.join('\n  '));
-        await mkdir(path.join(DIST, 'assets', 'css'), { recursive: true });
-        await writeFile(path.join(DIST, 'assets', 'css', 'style.css'), out.styles);
+        // incorporato nelle pagine: niente richiesta bloccante; i percorsi dei font diventano relativi alla pagina
+        inlinedCss = out.styles.replaceAll('../fonts/', 'assets/fonts/');
         report.push(['style.css', src.length, out.styles.length]);
     }
 
@@ -142,7 +143,10 @@ async function run() {
 
     // ---- HTML ----
     for (const file of (await readdir(path.join(SRC, 'pages'))).filter((f) => f.endsWith('.html'))) {
-        const rendered = await renderPage(file);
+        const link = '<link rel="stylesheet" href="assets/css/style.css">';
+        let rendered = await renderPage(file);
+        if (!rendered.includes(link)) throw new Error(`${file}: link al CSS non trovato nel layout`);
+        rendered = rendered.replace(link, () => `<style>${inlinedCss}</style>`);
         let out = await minifyHtml(rendered, {
             collapseWhitespace: true,
             conservativeCollapse: false,
