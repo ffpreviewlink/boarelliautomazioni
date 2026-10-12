@@ -146,3 +146,42 @@ html:not(.js) .site-nav__idx { display: none; }
     .site-nav__list a[aria-current="true"]::after { opacity: 1; transform: translateY(-50%); }
     .site-nav__cta { width: auto; margin: 0; min-height: 2.5rem; padding: 0 1.1rem; font-size: 0.875rem; }
 }
+
+/* animazione del pannello mobile: si apre scorrendo dall'alto, le voci entrano a cascata */
+@media (prefers-reduced-motion: no-preference) and (max-width: 1079.98px) {
+    .js .site-nav {
+        display: block;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-0.75rem);
+        clip-path: inset(0 0 100% 0);
+        pointer-events: none;
+        transition: opacity 0.25s var(--ease), transform 0.3s var(--ease), clip-path 0.3s var(--ease), visibility 0s linear 0.3s;
+    }
+    .js .site-nav.is-open {
+        visibility: visible;
+        opacity: 1;
+        transform: none;
+        clip-path: inset(0);
+        pointer-events: auto;
+        transition-delay: 0s;
+    }
+    .js .site-nav__list li,
+    .js .site-nav__cta {
+        opacity: 0;
+        transform: translateY(-0.5rem);
+        transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
+    }
+    .js .site-nav.is-open .site-nav__list li,
+    .js .site-nav.is-open .site-nav__cta {
+        opacity: 1;
+        transform: none;
+        transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+        transition-delay: calc(0.05s + var(--i, 0) * 0.05s);
+    }
+    .js .site-nav__list li:nth-child(2) { --i: 1; }
+    .js .site-nav__list li:nth-child(3) { --i: 2; }
+    .js .site-nav__list li:nth-child(4) { --i: 3; }
+    .js .site-nav__list li:nth-child(5) { --i: 4; }
+    .js .site-nav__cta { --i: 5; }
+}
